@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "273400337977",
+    "firebase_url": "https://responsi-android-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "responsi-android",
+    "storage_bucket": "responsi-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273400337977:android:6f230893db064e863adfe8",
+        "android_client_info": {
+          "package_name": "com.example.responsiandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273400337977-2gfdk9m0h3v77p4qb0qfua9f1gr00a7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmzofzQMoAdHPSZ9iFxR41Jx_eFnuEIic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273400337977-2gfdk9m0h3v77p4qb0qfua9f1gr00a7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
