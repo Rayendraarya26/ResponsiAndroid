@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,6 +51,21 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
         holder.tvIsiLaporan.setText(data.getIsiLaporan());
         holder.tvLokasi.setText(data.getLokasi());
 
+        holder.updatebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager manager = ((AppCompatActivity)activity).getSupportFragmentManager();
+                DialogForm dialog = new DialogForm(
+                        data.getJudul(),
+                        data.getIsiLaporan(),
+                        data.getLokasi(),
+                        data.getKey(),
+                        "Ubah"
+                );
+                dialog.show(manager, "form");
+            }
+        });
+
         holder.deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,18 +94,6 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
                 builder.show();
             }
         });
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailSaran.class);
-                intent.putExtra("Judul", data.getJudul());
-                intent.putExtra("IsiLaporan", data.getIsiLaporan());
-                intent.putExtra("Lokasi", data.getLokasi());
-                intent.putExtra("Key", data.getKey());
-                view.getContext().startActivity(intent);
-            }
-        });
     }
 
 
@@ -100,13 +105,14 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul, tvIsiLaporan, tvLokasi;
-        ImageView deletebtn;
+        ImageView deletebtn, updatebtn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tvJudulSaran);
             tvIsiLaporan = itemView.findViewById(R.id.tvIsiLaporan);
             tvLokasi = itemView.findViewById(R.id.tvLokasi);
             deletebtn = itemView.findViewById(R.id.hapus);
+            updatebtn = itemView.findViewById(R.id.update);
 
 
         }

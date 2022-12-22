@@ -33,9 +33,6 @@ public class DialogForm extends DialogFragment {
     TextView tJudul, tIsiLaporan, tLokasi;
     Button savebtn;
 
-    public DialogForm(String judul, String isiLaporan, String lokasi, String ubah) {
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,7 +53,7 @@ public class DialogForm extends DialogFragment {
                 String isiLaporan = tIsiLaporan.getText().toString();
                 String lokasi = tLokasi.getText().toString();
                 if (pilih.equals("Ubah")){
-                    database.child("Saran").child("key").setValue(new ModelSaran(judul, isiLaporan, lokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    database.child("Saran").child(key).setValue(new ModelSaran(judul, isiLaporan, lokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(view.getContext(), "Data berhasil dirubah", Toast.LENGTH_SHORT).show();

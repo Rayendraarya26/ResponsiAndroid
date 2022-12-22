@@ -19,9 +19,6 @@
         <activity android:name=".EditActivity"
             android:exported="false"/>
         <activity
-            android:name=".DetailSaran"
-            android:exported="false" />
-        <activity
             android:name=".TambahActivity"
             android:exported="false" />
         <activity
