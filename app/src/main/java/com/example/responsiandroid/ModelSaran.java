@@ -7,15 +7,17 @@ public class ModelSaran {
     private String judul;
     private String isiLaporan;
     private String lokasi;
+    private String tanggal;
     private String key;
 
     public ModelSaran(){
 
     }
 
-    public ModelSaran(String judul, String isiLaporan, String lokasi){
+    public ModelSaran(String judul, String isiLaporan, String tanggal, String lokasi){
         this.judul = judul;
         this.isiLaporan = isiLaporan;
+        this.tanggal = tanggal;
         this.lokasi = lokasi;
     }
 
@@ -33,6 +35,14 @@ public class ModelSaran {
 
     public void setIsiLaporan(String isiLaporan) {
         this.isiLaporan = isiLaporan;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 
     public String getLokasi() {

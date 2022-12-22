@@ -28,10 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder> {
-    private static final String CHANNEL_ID = "primary-channel";
     private List<ModelSaran> sList;
     private Activity activity;
-    String cobaNotif;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     CardView cardView;
 
@@ -52,6 +50,7 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
         final ModelSaran data = sList.get(position);
         holder.tvJudul.setText(data.getJudul());
         holder.tvIsiLaporan.setText(data.getIsiLaporan());
+        holder.tvTanggal.setText(data.getTanggal());
         holder.tvLokasi.setText(data.getLokasi());
 
         holder.updatebtn.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +60,7 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
                 DialogForm dialog = new DialogForm(
                         data.getJudul(),
                         data.getIsiLaporan(),
+                        data.getTanggal(),
                         data.getLokasi(),
                         data.getKey(),
                         "Ubah"
@@ -107,12 +107,13 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvJudul, tvIsiLaporan, tvLokasi;
+        TextView tvJudul, tvIsiLaporan, tvTanggal, tvLokasi;
         ImageView deletebtn, updatebtn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tvJudulSaran);
             tvIsiLaporan = itemView.findViewById(R.id.tvIsiLaporan);
+            tvTanggal = itemView.findViewById(R.id.tvTanggal);
             tvLokasi = itemView.findViewById(R.id.tvLokasi);
             deletebtn = itemView.findViewById(R.id.hapus);
             updatebtn = itemView.findViewById(R.id.update);

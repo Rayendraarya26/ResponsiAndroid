@@ -20,17 +20,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class DialogForm extends DialogFragment {
-    String judul, isiLaporan, lokasi, key, pilih;
+    String judul, isiLaporan, tanggal, lokasi, key, pilih;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
-    public DialogForm(String judul, String isiLaporan, String lokasi, String key, String pilih) {
+    public DialogForm(String judul, String isiLaporan, String tanggal, String lokasi, String key, String pilih) {
         this.judul = judul;
         this.isiLaporan = isiLaporan;
+        this.tanggal = tanggal;
         this.lokasi = lokasi;
         this.key = key;
         this.pilih = pilih;
     }
-    TextView tJudul, tIsiLaporan, tLokasi;
+    TextView tJudul, tIsiLaporan, tTanggal,tLokasi;
     Button savebtn;
 
     @Nullable
@@ -39,11 +40,13 @@ public class DialogForm extends DialogFragment {
         final View view = inflater.inflate(R.layout.activity_tambah, container, false );
         tJudul = view.findViewById(R.id.addJudul);
         tIsiLaporan = view.findViewById(R.id.addIsiLaporan);
+        tTanggal = view.findViewById(R.id.addTanggal);
         tLokasi = view.findViewById(R.id.addLokasi);
         savebtn = view.findViewById(R.id.add_record);
 
         tJudul.setText(judul);
         tIsiLaporan.setText(isiLaporan);
+        tTanggal.setText(tanggal);
         tLokasi.setText(lokasi);
 
         savebtn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +56,7 @@ public class DialogForm extends DialogFragment {
                 String isiLaporan = tIsiLaporan.getText().toString();
                 String lokasi = tLokasi.getText().toString();
                 if (pilih.equals("Ubah")){
-                    database.child("Saran").child(key).setValue(new ModelSaran(judul, isiLaporan, lokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    database.child("Saran").child(key).setValue(new ModelSaran(judul, isiLaporan, tanggal, lokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(view.getContext(), "Data berhasil dirubah", Toast.LENGTH_SHORT).show();

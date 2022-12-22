@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TambahActivity extends AppCompatActivity {
-    private EditText addJudul, addIsiLaporan, addLokasi;
+    private EditText addJudul, addIsiLaporan, addTanggal, addLokasi;
     private Button add_record;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
@@ -35,6 +35,7 @@ public class TambahActivity extends AppCompatActivity {
         addJudul = findViewById(R.id.addJudul);
         addIsiLaporan = findViewById(R.id.addIsiLaporan);
         addLokasi = findViewById(R.id.addLokasi);
+        addTanggal = findViewById(R.id.addTanggal);
         add_record = findViewById(R.id.add_record);
 
         add_record.setOnClickListener(new View.OnClickListener() {
@@ -42,16 +43,19 @@ public class TambahActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String getJudul = addJudul.getText().toString();
                 String getIsiLaporan = addIsiLaporan.getText().toString();
+                String getTanggal = addTanggal.getText().toString();
                 String getLokasi = addLokasi.getText().toString();
 
                 if (getJudul.isEmpty()){
                     addJudul.setError("Masukan Judul");
                 } else if (getIsiLaporan.isEmpty()){
                     addIsiLaporan.setError("Masukan Isi Laporan");
+                } else if(getTanggal.isEmpty()) {
+                    addTanggal.setError("Masukan Tanggal");
                 } else if (getLokasi.isEmpty()){
                     addLokasi.setError("Masukan Lokasi");
                 } else {
-                    database.child("Saran").push().setValue(new ModelSaran(getJudul,getIsiLaporan,getLokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    database.child("Saran").push().setValue(new ModelSaran(getJudul,getIsiLaporan,getTanggal,getLokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
