@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder> {
+    private static final String CHANNEL_ID = "primary-channel";
     private List<ModelSaran> sList;
     private Activity activity;
+    String cobaNotif;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     CardView cardView;
 
@@ -113,10 +116,7 @@ public class AdapterSaran extends RecyclerView.Adapter<AdapterSaran.MyViewHolder
             tvLokasi = itemView.findViewById(R.id.tvLokasi);
             deletebtn = itemView.findViewById(R.id.hapus);
             updatebtn = itemView.findViewById(R.id.update);
-
-
         }
     }
-
 
 }
