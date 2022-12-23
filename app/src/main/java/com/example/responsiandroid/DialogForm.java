@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,9 +45,17 @@ public class DialogForm extends DialogFragment {
         tLokasi = view.findViewById(R.id.addLokasi);
         savebtn = view.findViewById(R.id.add_record);
 
+        tTanggal.setText(tanggal);
+
+        tTanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+
         tJudul.setText(judul);
         tIsiLaporan.setText(isiLaporan);
-        tTanggal.setText(tanggal);
         tLokasi.setText(lokasi);
 
         savebtn.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +64,8 @@ public class DialogForm extends DialogFragment {
                 String judul = tJudul.getText().toString();
                 String isiLaporan = tIsiLaporan.getText().toString();
                 String lokasi = tLokasi.getText().toString();
+                String tanggal = tTanggal.getText().toString();
+
                 if (pilih.equals("Ubah")){
                     database.child("Saran").child(key).setValue(new ModelSaran(judul, isiLaporan, tanggal, lokasi)).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -71,6 +82,21 @@ public class DialogForm extends DialogFragment {
             }
         });
         return view;
+    }
+
+    private void showDatePicker() {
+        DialogFragment dateFragment = new EditDatePickerFragment();
+        dateFragment.show(getChildFragmentManager(), "date-picker");
+    }
+
+
+    public void processDatePickerResult(int dayOfMonth, int month, int year) {
+        String day_string = Integer.toString(dayOfMonth);
+        String month_string = Integer.toString(month);
+        String year_string = Integer.toString(year);
+        String dateMessage = day_string + "/" + month_string + "/" + year_string;
+
+        tTanggal.setText(dateMessage);
     }
 
     @Override

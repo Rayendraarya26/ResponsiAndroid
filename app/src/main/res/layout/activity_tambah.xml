@@ -23,13 +23,14 @@
         android:hint="Masukkan Isi Laporan"
         android:inputType="textMultiLine">
     </EditText>
-    <EditText
+    <TextView
         android:id="@+id/addTanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Masukkan Tanggal Kejadian"
-        android:inputType="date"/>
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:hint="Masukkan Tanggal Kejadian" />
 
     <EditText
         android:id="@+id/addLokasi"

@@ -1,9 +1,12 @@
 package com.example.responsiandroid;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,10 +14,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,8 +28,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class TambahActivity extends AppCompatActivity {
-    private EditText addJudul, addIsiLaporan, addTanggal, addLokasi;
+    private EditText addJudul, addIsiLaporan, addLokasi;
+    TextView addTanggal;
     private Button add_record;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
@@ -37,6 +46,13 @@ public class TambahActivity extends AppCompatActivity {
         addLokasi = findViewById(R.id.addLokasi);
         addTanggal = findViewById(R.id.addTanggal);
         add_record = findViewById(R.id.add_record);
+
+        addTanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
 
         add_record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,5 +123,19 @@ public class TambahActivity extends AppCompatActivity {
 
     }
 
+    private void showDatePicker() {
+        DialogFragment dateFragment = new DatePickerFragment();
+        dateFragment.show(getSupportFragmentManager(), "date-picker");
+    }
 
+
+    public void processDatePickerResult(int dayOfMonth, int month, int year) {
+        String day_string = Integer.toString(dayOfMonth);
+        String month_string = Integer.toString(month);
+        String year_string = Integer.toString(year);
+
+        String dateMessage = day_string + "/" + month_string + "/" + year_string;
+
+        addTanggal.setText(dateMessage);
+    }
 }

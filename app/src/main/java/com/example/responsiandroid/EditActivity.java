@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,7 +28,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         final EditText detJudul = (EditText) findViewById(R.id.editJudul);
         final EditText detIsi = (EditText) findViewById(R.id.editIsiLaporan);
-        final EditText detTanggal = (EditText) findViewById(R.id.editTanggal);
+        final TextView detTanggal = (TextView) findViewById(R.id.editTanggal);
         final EditText detLokasi = (EditText) findViewById(R.id.editLokasi);
         Button btnSave = (Button) findViewById(R.id.UpdateRecord);
 
